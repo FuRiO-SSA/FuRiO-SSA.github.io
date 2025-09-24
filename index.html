@@ -55,7 +55,6 @@
     <div style="text-align: center;">  
       <h1>
         <span style="font-weight: 1000;">FuRIOSSA</span>: Fusion of Real-Time Deep Visual-Inertial Odometry for Vehicle Side-Slip Angle Estimation
-      Leveraging Manhattan World
       </h1>
 
       <div style="margin-top: 15px;">
@@ -100,14 +99,7 @@
       
   <div style="margin-top: 60px; width: 90%; margin: 0 auto; text-align: justify;">
     <p style="margin-bottom: 20px;">
-    We propose a novel calibration method between single-point LiDAR and camera sensors utilizing an easy-to-build customized calibration board satisfying the Manhattan world (MW).
-    Previous approaches for LiDAR-camera (LC) calibration focus on line and plane correspondences.
-    However, they require dense point clouds from heavy LiDAR to simplify alignment; otherwise, these approaches fail for extremely sparse LiDAR.
-    The compact size and lightweight single-point LiDARs make them ideal for micro-robotics where size and weight are constrained.
-    To address these gaps, we present a new extrinsic calibration method with a new calibration board, which rotates like a door to capture geometric features and align them with images.
-    Once we find an initial estimate, we refine the relative rotation by minimizing the angle difference between the grid orientation of the checkerboard and the MW axes.
-    We demonstrate the effectiveness of the proposed method through various LC configurations, achieving its capability and high accuracy compared to other state-of-the-art approaches.
-    We release our calibration toolkit, source codes, and how to make the calibration target boards at: <a href="https://splice-calib.github.io/" target="_blank">SPLiCE Project Page</a>.
+
   </p>
 
 
@@ -130,9 +122,7 @@
     </div>
   <div style="margin-top: 60px; width: 100%; margin: 0 auto; text-align: justify;">
     <p style="margin-bottom: 20px;">
-        Custom-built calibration target board to extract point and line features: <b>(1)</b> Completely flat that satisfies the Manhattan world.
-        <b>(2)</b> Multiple black-and-white grids row extend 300 mm horizontally, with a square hole at the lower center of the grid.
-        <b>(3)</b> Rotates 90 degrees like a door. <b>(4)</b> Each frame has a unique Manhattan Frame. 
+
     
       </p>
     </div>
@@ -147,9 +137,7 @@
   <div style="margin-top: 35px;">
   <div style="margin-top: 60px; width: 100%; margin: 0 auto; text-align: justify;">
     <p style="margin-bottom: 20px;">
-      The single-point LiDAR provides only a distance value in a single direction. 
-        We utilize the square hole in the target board to extend the distance value into three points, requiring knowledge of both the grid and hole width. We can detect three points expressed in the LiDAR coordinate system for each frame.
-In the image from the camera, it perceives the square hole as a black grid due to the black wall visible through it and does not recognize it as an open hole.
+
       </p>
   </div>
 </div>
@@ -165,15 +153,7 @@ In the image from the camera, it perceives the square hole as a black grid due t
   </div>
   <div style="margin-top: 60px; width: 100%; margin: 0 auto; text-align: justify;">
      <p style="margin-bottom: 20px;">
-      Our main idea is to establish 2D-3D correspondences between the LiDAR and camera frames by inducing rotational motion on a new calibration target board.
-      Furthermore, we refine the relative rotation between two sensors by aligning the orientation of the calibration target board with respect to the MW axes. 
-      <br>
-      (<span class="text-danger">red boxes</span>) We detect three points based on the accumulated points from single-point LiDAR by utilizing the geometric characteristics of the proposed new calibration target board. 
-      <br>
-      (<span class="text-success">green boxes</span>) We extract three parallel vertical and horizontal lines in the image and detect the MW aligned to them.
-      <br>
-      (<span class="text-primary">blue boxes</span>) Given three points, parallel lines, and the MW, we find the relative rotation and translation between two sensors by minimizing the point-to-line distances and angle differences.
-    </p>
+      </p>
   </div>
 </div>
 
