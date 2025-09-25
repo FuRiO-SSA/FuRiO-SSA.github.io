@@ -93,7 +93,25 @@
       
   <div style="margin-top: 60px; width: 90%; margin: 0 auto; text-align: justify;">
     <p style="margin-bottom: 20px;">
-
+We present FuRIOSSA, a novel framework for real-time vehicle side-slip angle (SSA) estimation that fuses geometric visual–inertial odometry (VIO) with deep spatiotemporal neural refinement. Accurate SSA estimation is criticalfor advanced driver assistance systems (ADAS) and autonomous
+driving, but most prior approaches rely on expensive GNSS/INS
+systems or specially designed downward-facing cameras, which
+are impractical for mass-production vehicles. To overcome these
+limitations, we propose a lightweight and deployable solution
+that requires only a single monocular camera and a low-cost
+IMU, eliminating the need for high-end sensors or specialized
+setups. Unlike purely data-driven methods that demand large
+and diverse training datasets, our approach leverages geometric
+VIO outputs — longitudinal/lateral velocities and yaw states
+— as physics-consistent priors, which are further refined
+through a deep neural module combining CNN, GRU, and
+attention mechanisms. This hybrid design enhances accuracy
+and robustness by capturing spatio-temporal driving cues
+while dynamically weighting VIO uncertainties. We evaluate
+FuRIOSSA on public real-world vehicle datasets, including
+KITTI and KAIST Urban, demonstrating that it achieves high
+accuracy and stability comparable to high-end systems while
+maintaining real-time performance and low cost.
   </p>
 
 
