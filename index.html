@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet"> 
 
 
-  <title>FuRIOSSA</title>
+  <title>SPLiCE</title>
   <style>
     *{
     font-family: 'Roboto', sans-serif;
@@ -54,14 +54,13 @@
     <br>
     <div style="text-align: center;">  
       <h1>
-        <span style="font-weight: 1000;">FuRIOSSA</span>: Fusion of Real-Time Deep Visual-Inertial Odometry for Vehicle Side-Slip Angle Estimation
-      </h1>
+        <span style="font-weight: 900;">FuRIOSSA</span>: Fusion of Real-Time Deep Visual-Inertial Odometry for Vehicle Side-Slip Angle Estimation     </h1>
 
-      <div style="margin-top: 15px;">
-        <span style="margin-right: 15px; font-size: 1.3em; font-weight: bold;">Anonymous ICRA Submission</span> <br>
-      </div>
-     
-     
+      <div style="margin-top: 55px;">
+        <span style="margin-right: 15px; font-size: 1.3em; font-weight: bold;">Minji Kim, Jeahn Han, Jungil Ham, Pyojin Kim<sup>*</sup></span> <br>
+        <span style="font-size: 1.1em;">Gwangju Institute of Science and Technology (GIST)</span><br>
+        <span style="font-size: 1.1em;">School of Mechanical and Robotics Engineering</span>
+
     
       </div>
     <div class="container">
@@ -69,15 +68,41 @@
         <div class="row" style="display: flex; justify-content: center;">
             <ul class="nav-pills">
                 <li>
-                    <a href="https://youtu.be/txSMsjDpiNM">
-                        <img src="img/youtube_icon.png" height="40px">
-                        <h4><strong>Video</strong></h4>
+                    <a href="Supplementary.pdf" target="_blank">
+                        <img src="img/paper_imag.png" height="40px">
+                        <h4><strong>Supplementary </strong></h4>
                     </a>
                 </li>
                 <li>
-                    <a href="https://github.com/FuRiO-SSA/FuRIOSSA/tree/main">
+                  
+                    <a href="https://youtu.be/SnKFWtQ_oSc?si=Au--7TpbTTFiNhzM">
+ 
+
+                        <img src="img/youtube_icon.png" height="40px">
+ 
+
+                        <h4><strong>Video</strong></h4>
+ 
+
+                    </a>
+ 
+
+                </li>
+ 
+
+                <li>
+ 
+
+                    <a href="https://github.com/SPLiCE-Calib/SPLiCE-Calib.github.io">
+ 
+
                         <img src="img/github.png" height="40px">
+ 
+
                         <h4><strong>Code</strong></h4>
+                    <a href="https://github.com/SPLiCE-Calib/SPLiCE-Calib.github.io/Supplementary.pdf" target="_blank">
+                    
+                        
                     </a>
                 </li>
             </ul>
@@ -93,70 +118,125 @@
       
   <div style="margin-top: 60px; width: 90%; margin: 0 auto; text-align: justify;">
     <p style="margin-bottom: 20px;">
+    
 We present FuRIOSSA, a novel framework for real-time vehicle side-slip angle (SSA) estimation that fuses geometric visual–inertial odometry (VIO) with deep spatio-temporal neural refinement.
 Accurate SSA estimation is critical for advanced driver assistance systems (ADAS) and autonomous driving, but most prior approaches rely on expensive GNSS/INS systems or specially designed downward-facing cameras, which are impractical for mass-production vehicles.
 To overcome these limitations, we propose a lightweight and deployable solution that requires only a single monocular camera and a low-cost IMU, eliminating the need for high-end sensors or specialized setups.
 Unlike purely data-driven methods that demand large and diverse training datasets, our approach leverages geometric VIO outputs — longitudinal/lateral velocities and yaw states — as physics-consistent priors, which are further refined through a deep neural module combining CNN, GRU, and attention mechanisms.
 This hybrid design enhances accuracy and robustness by capturing spatio-temporal driving cues while dynamically weighting VIO uncertainties.
 We evaluate FuRIOSSA on public real-world vehicle datasets, including KITTI and KAIST Urban, demonstrating that it achieves high accuracy and stability comparable to high-end systems while maintaining real-time performance and low cost.
+ 
   </p>
 
-    
+
+      
 <div style="margin-top: 50px; text-align: center;">
   <div class="text-center">
-    <h2>FuRIOSSA Overview</h2>
-    <div style="width: 80%; margin: 0 auto; position: relative;margin-bottom: 40px;">
-      <img src="img/FuRIOSSA_pipeline.png" alt="pipeline" style="width: 100%; border-radius: 10px;"
+    <h2>Target Board</h2>
+    <div style="width: 90%; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 20px;">
+      <!-- GIF -->
+      <div style="flex: 1; max-width: 45%; text-align: center;">
+        <img src="gif/board.gif" alt="GIF" style="width: 100%; height: auto; border-radius: 0px;">
+      </div>
+      <!-- 이미지 -->
+      <div style="flex: 1; max-width: 45%; text-align: center;">
+        <img src="gif/mw.png" alt="Image" style="width: 100%; height: auto; border-radius: 0px;">
+      </div>
+            <div style="flex: 1; max-width: 45%; text-align: center;">
+        <img src="gif/targetboard.png" alt="Image" style="width: 100%; height: auto; border-radius: 0px;">
+      </div>
     </div>
-    
-  </div>
   <div style="margin-top: 60px; width: 100%; margin: 0 auto; text-align: justify;">
     <p style="margin-bottom: 20px;">
-      A monocular camera and low-cost IMU provide raw measurements, which are synchronized and processed through a VIO module consisting of IMU prediction, visual feature detection, and state estimation.
-We first obtain raw SSA from the estimated vehicle velocities and yaw states in the VIO step.
-This initial estimate is passed into a neural fusion and refinement module composed of GRU, CNN, and attention.
-This deep spatio-temporal refinement step yields an accurate and real-time vehicle SSA suitable for onboard deployment.
-    </p>
-  
+        Custom-built calibration target board to extract point and line features: <b>(1)</b> Completely flat that satisfies the Manhattan world.
+        <b>(2)</b> Multiple black-and-white grids row extend 300 mm horizontally, with a square hole at the lower center of the grid.
+        <b>(3)</b> Rotates 90 degrees like a door. <b>(4)</b> Each frame has a unique Manhattan Frame. 
+    
+      </p>
+    </div>
   </div>
 </div>
 
-      
+  
+  <div style="margin-top: 50px; text-align: center;">
+  <div class="text-center">
+    <h2>Calibration Method</h2>
+    <img src="gif/method.gif" alt="Comparison Image" style="max-width: 90%; height: auto; border-radius: 10px;">
+  <div style="margin-top: 35px;">
+  <div style="margin-top: 60px; width: 100%; margin: 0 auto; text-align: justify;">
+    <p style="margin-bottom: 20px;">
+      The single-point LiDAR provides only a distance value in a single direction. 
+        We utilize the square hole in the target board to extend the distance value into three points, requiring knowledge of both the grid and hole width. We can detect three points expressed in the LiDAR coordinate system for each frame.
+In the image from the camera, it perceives the square hole as a black grid due to the black wall visible through it and does not recognize it as an open hole.
+      </p>
+  </div>
+</div>
 
+<div style="margin-top: 50px; text-align: center;">
+  <div class="text-center">
+    <h2>SPLiCE Overview</h2>
+    <div style="width: 90%; margin: 0 auto; position: relative;">
+      <video controls loop muted autoplay style="width: 100%; border-radius: 10px;">
+        <source src="gif/framework.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+  <div style="margin-top: 60px; width: 100%; margin: 0 auto; text-align: justify;">
+     <p style="margin-bottom: 20px;">
+      Our main idea is to establish 2D-3D correspondences between the LiDAR and camera frames by inducing rotational motion on a new calibration target board.
+      Furthermore, we refine the relative rotation between two sensors by aligning the orientation of the calibration target board with respect to the MW axes. 
+      <br>
+      (<span class="text-danger">red boxes</span>) We detect three points based on the accumulated points from single-point LiDAR by utilizing the geometric characteristics of the proposed new calibration target board. 
+      <br>
+      (<span class="text-success">green boxes</span>) We extract three parallel vertical and horizontal lines in the image and detect the MW aligned to them.
+      <br>
+      (<span class="text-primary">blue boxes</span>) Given three points, parallel lines, and the MW, we find the relative rotation and translation between two sensors by minimizing the point-to-line distances and angle differences.
+    </p>
+  </div>
+</div>
+
+
+
+  
 
 <div style="margin-top: 50px; text-align: center;">
   <div class="text-center">
     <h2>Result</h2>
-    <div style="width: 90%; margin: 0 auto; position: relative;">
-      <video controls loop muted autoplay style="width: 100%; border-radius: 10px;">
-        <source src="img/result.mp4" type="video/mp4">
-      </video>
+    <h4>We evaluate four different configurations: intra-drone (A and B) and inter-drone (C and D) cases</h4>
+    <div style="width: 80%; margin: 0 auto; position: relative;margin-bottom: 40px;">
+      <img src="gif/result.png" alt="SLIC-Calib Overview Image" style="width: 100%; border-radius: 10px;"
     </div>
+    <div style="margin-top: 60px; width: 100%; margin: 0 auto; position: relative;">
+      <img src="gif/peeeek2.gif" alt="Comparison Image" style="max-width: 100%; height: auto; border-radius: 10px;">
+    </div>
+    
   </div>
-  <div style="margin-top: 60px; width: 100%; margin: 0 auto; text-align: justify;"><p style="margin-bottom: 20px;">
-         <p style="margin-bottom: 20px;">
-      This visualization is an integrated video for dynamic analysis of side-slip angle,testing the PVIO baseline FuRIOSSA on the KITTI dataset.
-    </p>
+  <div style="margin-top: 60px; width: 100%; margin: 0 auto; text-align: justify;">
+  
   </div>
 </div>
 
-
-
-
-
-  
 
 
     
       <div>
         <h2 class="text-center" style="margin-top: 30px;">
-          Citation
+          Code and Datasets
         </h2>
         <p>
-         
+         Our calibration toolkit, code, and dataset will be released upon acceptance of our work.
         </p>
   
       </div>
+    <div class="container text-center mt-4">...
+    </div>
+
+    <div class="container mt-5 text-center">
+      <h2>Citation</h2>
+      <pre>      </pre>
+    </div>
+  </div>
+
       
       <!-- Optional JavaScript -->
       <!-- jQuery first, then Popper.js, then Bootstrap JS -->
