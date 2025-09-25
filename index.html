@@ -121,68 +121,23 @@ We evaluate FuRIOSSA on public real-world vehicle datasets, including KITTI and 
   </p>
 
 
-      
-<div style="margin-top: 50px; text-align: center;">
-  <div class="text-center">
-    <h2>Target Board</h2>
-    <div style="width: 90%; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 20px;">
-      <!-- GIF -->
-      <div style="flex: 1; max-width: 45%; text-align: center;">
-        <img src="gif/board.gif" alt="GIF" style="width: 100%; height: auto; border-radius: 0px;">
-      </div>
-      <!-- 이미지 -->
-      <div style="flex: 1; max-width: 45%; text-align: center;">
-        <img src="gif/mw.png" alt="Image" style="width: 100%; height: auto; border-radius: 0px;">
-      </div>
-            <div style="flex: 1; max-width: 45%; text-align: center;">
-        <img src="gif/targetboard.png" alt="Image" style="width: 100%; height: auto; border-radius: 0px;">
-      </div>
-    </div>
-  <div style="margin-top: 60px; width: 100%; margin: 0 auto; text-align: justify;">
-    <p style="margin-bottom: 20px;">
-        Custom-built calibration target board to extract point and line features: <b>(1)</b> Completely flat that satisfies the Manhattan world.
-        <b>(2)</b> Multiple black-and-white grids row extend 300 mm horizontally, with a square hole at the lower center of the grid.
-        <b>(3)</b> Rotates 90 degrees like a door. <b>(4)</b> Each frame has a unique Manhattan Frame. 
-    
-      </p>
-    </div>
-  </div>
-</div>
-
-  
-  <div style="margin-top: 50px; text-align: center;">
-  <div class="text-center">
-    <h2>Calibration Method</h2>
-    <img src="gif/method.gif" alt="Comparison Image" style="max-width: 90%; height: auto; border-radius: 10px;">
-  <div style="margin-top: 35px;">
-  <div style="margin-top: 60px; width: 100%; margin: 0 auto; text-align: justify;">
-    <p style="margin-bottom: 20px;">
-      The single-point LiDAR provides only a distance value in a single direction. 
-        We utilize the square hole in the target board to extend the distance value into three points, requiring knowledge of both the grid and hole width. We can detect three points expressed in the LiDAR coordinate system for each frame.
-In the image from the camera, it perceives the square hole as a black grid due to the black wall visible through it and does not recognize it as an open hole.
-      </p>
-  </div>
-</div>
 
 <div style="margin-top: 50px; text-align: center;">
   <div class="text-center">
-    <h2>SPLiCE Overview</h2>
+    <h2>FuRIOSSA Overview</h2>
     <div style="width: 90%; margin: 0 auto; position: relative;">
       <video controls loop muted autoplay style="width: 100%; border-radius: 10px;">
-        <source src="gif/framework.mp4" type="video/mp4">
+        <source src="img/FuRIOSSA_pipeline.png" type="video/mp4">
       </video>
     </div>
   </div>
   <div style="margin-top: 60px; width: 100%; margin: 0 auto; text-align: justify;">
      <p style="margin-bottom: 20px;">
-      Our main idea is to establish 2D-3D correspondences between the LiDAR and camera frames by inducing rotational motion on a new calibration target board.
-      Furthermore, we refine the relative rotation between two sensors by aligning the orientation of the calibration target board with respect to the MW axes. 
-      <br>
-      (<span class="text-danger">red boxes</span>) We detect three points based on the accumulated points from single-point LiDAR by utilizing the geometric characteristics of the proposed new calibration target board. 
-      <br>
-      (<span class="text-success">green boxes</span>) We extract three parallel vertical and horizontal lines in the image and detect the MW aligned to them.
-      <br>
-      (<span class="text-primary">blue boxes</span>) Given three points, parallel lines, and the MW, we find the relative rotation and translation between two sensors by minimizing the point-to-line distances and angle differences.
+      A monocular camera and low-cost IMU provide raw measurements, which are synchronized and processed through a VIO module consisting of IMU prediction, visual feature detection, and state estimation.
+We first obtain raw SSA from the estimated vehicle velocities and yaw states in the VIO step.
+This initial estimate is passed into a neural fusion and refinement module composed of GRU, CNN, and attention.
+This deep spatio-temporal refinement step yields an accurate and real-time vehicle SSA suitable for onboard deployment.
+      
     </p>
   </div>
 </div>
